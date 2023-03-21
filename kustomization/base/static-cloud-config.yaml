@@ -1,0 +1,4 @@
+static_cloud:
+  ip_pool: 192.168.0.100-192.168.0.200
+  ip_tracker_config_map: static-cloud-ip-track
+  ip_tracker_config_map_namespace: kube-system

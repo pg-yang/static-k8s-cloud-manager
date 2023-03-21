@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      serviceAccountName: account
+      containers:
+        - name: controller
+          image: yangpg9/static-k8s-cloud-manager
+          command:
+            - /k8s/static-k8s-cloud-manager
+            - --cloud-provider=static-cloud
+            - --leader-elect=true
+            - --cloud-config=/config/static-cloud-config.yaml
+          volumeMounts:
+          - name: config
+            mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: config.yaml
